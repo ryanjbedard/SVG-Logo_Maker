@@ -29,15 +29,20 @@ const promptUser = () => {return inquirer.prompt ([
 // This function is used to write the SVG file and print text in the command line
 function writeToFile(fileName, data) {
     return fs.writeFile(path.join(process.cwd(), fileName), data, (err) =>
-    err ? console.error(err) : console.log('Generaged logo.svg')
+    err ? console.error(err) : console.log('Generated logo.svg')
   );
   }
+
+// function used to generate logo from responses
+function generateLogo(data){
+
+}
 
 // function used to initialize app
 function init() {
     promptUser()
     .then((responses)=>{
-    writeToFile("logo.svg", generateMarkdown({ ...responses }));
+    writeToFile("logo.svg", generateLogo({ ...responses }));
     })
   }  
 // Function call to initialize application
