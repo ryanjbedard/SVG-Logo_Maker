@@ -1,4 +1,4 @@
-// Packages needed tfor this application
+// Packages needed for this application
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
@@ -32,3 +32,13 @@ function writeToFile(fileName, data) {
     err ? console.error(err) : console.log('Generaged logo.svg')
   );
   }
+
+// function used to initialize app
+function init() {
+    promptUser()
+    .then((responses)=>{
+    writeToFile("logo.svg", generateMarkdown({ ...responses }));
+    })
+  }  
+// Function call to initialize application
+init();
