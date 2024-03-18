@@ -12,6 +12,10 @@ SO THAT I don't have to pay a graphic designer
 
 Clone the repository from Github. Navigate to the folder via the terminal. Type node . index.js and answer the series of questions. Following the last question, an SVG logo file should generate.
 
+![alt text](Assets/Screenshot%202024-03-18%20142038.png)
+https://drive.google.com/file/d/1edSL9vHTCcxAiJo8D3TRdJXYnu9NEx1J/view
+https://github.com/ryanjbedard/SVG-Logo_Maker
+
 ## Credits
 
 N/A
