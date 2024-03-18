@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
-const { Circle, Triangle, Square} = require('./shapes.js')
+const { Circle, Triangle, Square} = require('./lib/shapes.js')
 // Array of questions for user input
 const promptUser = () => {return inquirer.prompt ([
     {
