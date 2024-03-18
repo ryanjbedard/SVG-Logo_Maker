@@ -9,6 +9,7 @@ const promptUser = () => {return inquirer.prompt ([
       type: 'input',
       message: 'Please enter up to three characters',
       name: 'title',
+      validate: input => input.length <= 3 ? true : 'Text must be up to 3 characters.'
     },
     {
       type: 'input',
@@ -19,14 +20,15 @@ const promptUser = () => {return inquirer.prompt ([
       type: 'list',
       message: 'What shape would you like to choose?',
       name: 'shape',
-      choices: ['circle', 'triangle', 'square']
+      choices: ['Circle', 'Triangle', 'Square']
     },
     {
         type: 'input',
         message: 'What color would you like the shape to be?',
         name: 'shapeColor',
-      },
-    ])}
+      }
+    ]); 
+    };
 // This function is used to write the SVG file and print text in the command line
 function writeToFile(fileName, data) {
     return fs.writeFile(path.join(process.cwd(), fileName), data, (err) =>
@@ -35,11 +37,11 @@ function writeToFile(fileName, data) {
   }
 
 // function used to generate logo from responses
-function generateLogo(data){
+function generateLogo({title, textColor, shape, shapeColor}){
   const svgBase = `<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">`;
   let shapeChoice;
 
-  switch (shape) {
+  switch (shape.toLowerCase()) {
     case 'circle':
       shapeChoice = new Circle(shapeColor);
       break;
@@ -58,7 +60,7 @@ function generateLogo(data){
 
   const textSvg = `<text x="100" y="115" font-family="Arial" font-size="40" fill="${textColor}" text-anchor="middle">${title}</text>`;
 
-    return `${baseSvg}${shapeSvg}${textSvg}</svg>`;
+    return `${svgBase}${svgShape}${textSvg}</svg>`;
 }
 
 // function used to initialize app
