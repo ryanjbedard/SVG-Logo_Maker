@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
+const { Circle, Triangle, Square} = require('./shapes.js')
 // Array of questions for user input
 const promptUser = () => {return inquirer.prompt ([
     {
@@ -18,7 +19,7 @@ const promptUser = () => {return inquirer.prompt ([
       type: 'list',
       message: 'What shape would you like to choose?',
       name: 'shape',
-      choices: [circle, triangle, square]
+      choices: ['circle', 'triangle', 'square']
     },
     {
         type: 'input',
@@ -35,7 +36,29 @@ function writeToFile(fileName, data) {
 
 // function used to generate logo from responses
 function generateLogo(data){
+  const svgBase = `<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">`;
+  let shapeChoice;
 
+  switch (shape) {
+    case 'circle':
+      shapeChoice = new Circle(shapeColor);
+      break;
+    case 'triangle':
+      shapeChoice = new Triangle(shapeColor);
+      break;
+    case 'square':
+      shapeChoice = new Square(shapeColor);
+      break;
+    default:
+      console.error('This is not a supported shape');
+      return '';
+  }
+
+  let svgShape = shapeChoice.render();
+
+  const textSvg = `<text x="100" y="115" font-family="Arial" font-size="40" fill="${textColor}" text-anchor="middle">${title}</text>`;
+
+    return `${baseSvg}${shapeSvg}${textSvg}</svg>`;
 }
 
 // function used to initialize app
